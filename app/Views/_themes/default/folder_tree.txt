@@ -1,0 +1,18 @@
+Views/_themes/default
+  /dashboard
+    /partials
+      footer.php
+      header.php
+      navbar.php
+      scripts.php
+    index.php
+  /public
+    /partials
+      footer.php
+      header.php
+      navbar.php
+      scripts.php
+    index.php
+    login.php
+    
+  folder_tree.php

@@ -1,0 +1,139 @@
+html, body {
+  margin: 0;
+  padding: 0;
+
+}
+/* Estilos gerais */
+body {
+  padding-top: 0; /* Compensar a navbar fixa */
+  margin-top: 0;
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+}
+
+/* Cards de features */
+.card {
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Navbar ativa */
+.navbar {
+  top: 0; /* Força posicionamento no topo */
+  margin-top: 0; /* Remove margens residuais */
+}
+.navbar-nav .nav-link.active {
+  font-weight: 500;
+  position: relative;
+}
+
+.navbar-nav .nav-link.active:after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 2px;
+  background-color: white;
+}
+
+/* Dashboard Styles */
+/* Sidebar Styles */
+.sidebar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  transition: all 0.3s;
+}
+
+/* Offcanvas Behavior */
+.offcanvas-lg {
+  visibility: visible;
+  transform: none;
+  background: var(--bs-light);
+}
+
+/* Cards de Estatísticas */
+.card-statistic {
+  border-left: 0.25rem solid !important;
+}
+
+.chart-area {
+  position: relative;
+  height: 300px;
+  width: 100%;
+}
+
+.min-vh-100 {
+  min-height: 100vh;
+}
+
+/* Responsividade */
+@media (max-width: 991.98px) {
+  .navbar-nav {
+    padding-top: 1rem;
+  }
+  
+  .navbar-collapse {
+    background-color: var(--bs-primary);
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 0.25rem;
+  }
+
+  .offcanvas-lg {
+    visibility: hidden;
+    transform: translateX(-100%);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1045;
+    display: block;
+    max-width: 300px;
+    padding: 1rem;
+    overflow-y: auto;
+    background-color: var(--bs-light);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .offcanvas-lg.show {
+    visibility: visible;
+    transform: none;
+  }
+  
+  .offcanvas-lg.offcanvas-start {
+    top: 0;
+    left: 0;
+    width: 300px;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    transform: translateX(-100%);
+  }
+  
+  .offcanvas-lg.show:not(.hiding) {
+    transform: none;
+  }
+  
+  .offcanvas-lg.showing {
+    transform: none;
+    transition: transform 0.3s ease-in-out;
+  }
+}
+
+/* Ajuste para o conteúdo principal */
+main {
+  transition: margin-left 0.3s;
+}
+
+.offcanvas-lg.show ~ main {
+  margin-left: 300px;
+}
