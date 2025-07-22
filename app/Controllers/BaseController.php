@@ -38,6 +38,7 @@ abstract class BaseController extends Controller
 		'html',
 		'url',
 		// Personal
+		'strings',
 		'theme',
 	];
 
