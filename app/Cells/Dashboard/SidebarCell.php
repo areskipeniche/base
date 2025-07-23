@@ -27,8 +27,8 @@ class SidebarCell extends Cell
 		];
 
 		$routePermissions = getRoutePermissions();
-		helper('auth_permissions');
-		$userPermissions =getSubordinateGroups(session()->get('active_group'));
+		helper('auth_group');
+		$userPermissions =current_user_groups();
 
 		$filteredItems = [];
 

@@ -14,7 +14,6 @@ use CodeIgniter\Filters\SecureHeaders;
 
 // Importe seu filter personalizado
 use App\Filters\AuthGroupFilter;
-use App\Filters\ThemeFilter;
 
 class Filters extends BaseFilters
 {
@@ -39,7 +38,7 @@ class Filters extends BaseFilters
 		'performance'   => PerformanceMetrics::class,
 
 		// Adicione seu filter personalizado
-		'auth_group'    => AuthGroupFilter::class,     
+		'Auth'    => AuthGroupFilter::class,     
 		
 	];
 

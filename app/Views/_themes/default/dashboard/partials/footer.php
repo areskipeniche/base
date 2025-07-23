@@ -2,7 +2,7 @@
   <div class="container">
     <hr class="my-4 bg-light">
     <div class="text-center">
-      <p class="mb-0">&copy; <?= date('Y') ?> - <?= setting('app.shortName') ?>. <?= lang('Auth.view.theme.footer.all_rights_reserved') ?></p>
+      <p class="mb-0">&copy; <?= date('Y') ?> - <?= config('MyApp')->shortName ?>. <?= lang('Auth.view.theme.footer.all_rights_reserved') ?></p>
     </div>
   </div>
 </footer>

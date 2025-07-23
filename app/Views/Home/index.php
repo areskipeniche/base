@@ -1,7 +1,6 @@
 <?= $this->extend(theme_view('index')) ?>
 
 <?= $this->section('content') ?>
-
   <!-- begin::Hero Section -->
   <section class="hero-section bg-primary text-white py-5">
     <div class="container py-5">

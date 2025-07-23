@@ -39,7 +39,9 @@ abstract class BaseController extends Controller
 		'url',
 		// Personal
 		'strings',
+    'auth_group',
 		'theme',
+
 	];
 
 	/**

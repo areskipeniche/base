@@ -23,14 +23,7 @@ if (!function_exists('theme_view')) {
         return "_themes/{$theme}/{$type}/{$view}{$ext}";
       }
     }
-    
     // Retorna o caminho original se não encontrar no tema
     return $view;
-
   }
 }
-
-
-
-////////////////////////////////////////////////////////////
-

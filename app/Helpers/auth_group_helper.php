@@ -76,6 +76,33 @@ if (!function_exists('set_current_group')) {
 	}
 }
 
+if (!function_exists('set_current_user_groups')) {
+	/**
+	 * Define os grupos atuais do usuário (útil para troca de contexto)
+	 *
+	 * @return bool
+	 */
+	function set_current_user_groups(): bool
+	{
+		session()->set('current_user_groups', auth()->user()->getGroups());
+		return true;
+	}
+}
+
+if (!function_exists('remove_current_user_groups')) {
+	/**
+	 * Define os grupos atuais do usuário (útil para troca de contexto)
+	 *
+	 * @return bool
+	 */
+	function remove_current_user_groups(): bool
+	{
+		session()->remove('current_user_group'); 	// Limpa o grupo ativo da sessão
+		session()->remove('current_user_groups'); 	// Limpa os grupos do usuário na sessão
+		return true;
+	}
+}
+
 if (!function_exists('is_admin')) {
 	/**
 	 * Verifica se o usuário atual é administrador
@@ -83,9 +110,7 @@ if (!function_exists('is_admin')) {
 	 * @return bool
 	 */
 	function is_admin(): bool
-	{
-		return user_has_group('admin') || user_has_group('superadmin');
-	}
+	{ return user_has_group('admin') || user_has_group('superadmin'); }
 }
 
 if (!function_exists('can_access_admin')) {

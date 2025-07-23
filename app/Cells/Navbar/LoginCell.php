@@ -1,4 +1,4 @@
-<?php namespace App\Cells\Menu;
+<?php namespace App\Cells\Navbar;
 
 use CodeIgniter\View\Cells\Cell;
 

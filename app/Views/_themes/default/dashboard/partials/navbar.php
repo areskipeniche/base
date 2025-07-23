@@ -6,10 +6,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <!-- Logo -->
-    <a class="navbar-brand" href="<?= route_to('home') ?>">
-      <img src="<?= image_asset(setting('app.logo')) ?>" alt="Logo" height="40">
-    </a>
-    
+    <?= anchor(route_to('home.index'), img(image_asset(config('MyApp')->webImage), false, ['alt' => 'Logo', 'height' => 40]), ['class' => 'navbar-brand']) ?>
     <!-- Itens do lado direito -->
     <div class="d-flex align-items-center">
       <!-- Search -->

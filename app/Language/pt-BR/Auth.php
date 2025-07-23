@@ -113,7 +113,6 @@ return [
     'actions'   => 'Ações',
   ],
 
-
   # Messages
   'message'  => [
     # User
@@ -122,7 +121,6 @@ return [
         'select-profile' => 'Por favor, selecione um perfil para continuar.',
         'invalid-credentials' => 'Credenciais inválidas. Verifique seu e-mail/nome de usuário ou senha.',
         'not-activate' =>  'Sua conta não está ativa. Entre em contato com o administrador.',
-        'logout' => 'Você saiu do sistema.',
       ],
       'register' => [
         'not-allowed' => 'Sem permissão para registrar usuário!',

@@ -21,6 +21,7 @@ class AuthGroupFilter implements FilterInterface
 	 */
 	public function before(RequestInterface $request, $arguments = null)
 	{
+		helper('auth_group');
 		$auth = auth();
 		$session = Services::session();
 		
@@ -31,7 +32,7 @@ class AuthGroupFilter implements FilterInterface
 			$session->remove('current_user_groups');
 			
 			// Redireciona para login ou retorna erro 401
-			return redirect()->to('/login')->with('error', 'Você precisa estar logado para acessar esta página.');
+			return redirect()->route('login')->with('error', 'Você precisa estar logado para acessar esta página.');
 		}
 
 		// Obtém o usuário atual
@@ -43,17 +44,10 @@ class AuthGroupFilter implements FilterInterface
 		if (empty($userGroups)) {
 			// Se o usuário não tem grupos, remove da sessão e redireciona
 			$session->remove('current_user_group');
-			$session->remove('current_user_groups');
-			
-			return redirect()->to('/unauthorized')->with('error', 'Usuário sem permissões de grupo definidas.');
+			$session->remove('current_user_groups');	
+			return redirect()->route('error.unauthorized')->with('error', 'Usuário sem permissões de grupo definidas.');
 		}
-
-		// Armazena todos os grupos do usuário na sessão
-		$groupNames = array_map(function($group) {
-			return $group->name;
-		}, $userGroups);
-		
-		$session->set('current_user_groups', $groupNames);
+		set_current_user_groups();
 		
 		// Verifica se há um grupo específico solicitado nos argumentos do filter
 		if (!empty($arguments)) {
@@ -62,7 +56,7 @@ class AuthGroupFilter implements FilterInterface
 			// Verifica se o usuário possui pelo menos um dos grupos requeridos
 			$hasRequiredGroup = false;
 			foreach ($requiredGroups as $requiredGroup) {
-				if (in_array($requiredGroup, $groupNames)) {
+				if (in_array($requiredGroup, current_user_groups())) {
 					$hasRequiredGroup = true;
 					// Define o grupo atual baseado no primeiro grupo encontrado que atende aos requisitos
 					$session->set('current_user_group', $requiredGroup);
@@ -71,22 +65,22 @@ class AuthGroupFilter implements FilterInterface
 			}
 			
 			if (!$hasRequiredGroup) {
-				return redirect()->to('/unauthorized')->with('error', 'Você não possui permissão para acessar esta página.');
+				return redirect()->route('error.unauthorized')->with('error', 'Você não possui permissão para acessar esta página.');
 			}
 		} else {
 			// Se não há grupos específicos requeridos, define o primeiro grupo como atual
 			// Ou mantém o grupo atual se já estiver definido e ainda for válido
 			$currentGroup = $session->get('current_user_group');
 			
-			if (!$currentGroup || !in_array($currentGroup, $groupNames)) {
+			if (!$currentGroup || !in_array($currentGroup, current_user_groups())) {
 				// Define o primeiro grupo como atual se não houver um definido ou se o atual não for válido
-				$session->set('current_user_group', $groupNames[0]);
+				$session->set('current_user_group', current_user_groups()[0]);
 			}
 		}
 
 		// Adiciona informações úteis para uso nos controllers/views
 		$request->current_user = $user;
-		$request->current_user_groups = $groupNames;
+		$request->current_user_groups = current_user_groups();
 		$request->current_user_group = $session->get('current_user_group');
 
 		return $request;

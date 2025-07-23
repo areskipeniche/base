@@ -1,4 +1,4 @@
-<?php namespace App\Cells\Menu;
+<?php namespace App\Cells\Navbar;
 
 use CodeIgniter\View\Cells\Cell;
 
@@ -15,16 +15,12 @@ class UserCell extends Cell
 			['title' => 'separator'],
 			['title' => 'Sair', 'href' => route_to('logout'), 'icon' => 'box-arrow-right', 'modal' => '#logoutModal'],
 		];
-		$withoutDashboard = ['', 'unauthorized', 'select-profile', 'select-profile/change'];
 		$this->data['user'] = userName();
-		if (in_array(uri_string(), $withoutDashboard)) {
+		if (uri_string() != 'dashboard') {
+			array_splice($this->data['menu'], 0, 0, [['title' => 'Dashboard', 'href' => route_to('dashboard.index'), 'icon' => 'speedometer2', ]]);
+		}
 			$this->data['header'] = '<div class="dropdown text-light">';
 			$this->data['footer'] = '</div>';
-			array_splice($this->data['menu'], 0, 0, [['title' => 'Dashboard', 'href' => route_to('dashboard.index'), 'icon' => 'speedometer2', ]]);
-		} else {
-			$this->data['header'] = '<li class="nav-item dropdown mx-2">';
-			$this->data['footer'] = '</li>';
-		}
 	} //.public function mount(): void
 
 	public function render(): string

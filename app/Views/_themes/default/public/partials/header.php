@@ -1,9 +1,9 @@
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="<?= setting('app.description') ?? '' ?>">
-  <meta name="author" content="<?= setting('app.author') ?? '' ?>">
-  <title><?= setting('app.shortName') ?> | <?= isset($title) ? esc($title) : '' ?></title>
+  <meta charset="<?= config('MyApp')->webCharset ?>">
+  <meta name="viewport" content="<?= config('MyApp')->webViewport ?>">
+  <meta name="description" content="<?= config('MyApp')->webDescription ?>">
+  <meta name="author" content="<?= config('MyApp')->webAuthor ?>">
+  <title><?= config('MyApp')->shortName ?> | <?= isset($title) ? esc($title) : '' ?></title>
   <!-- Bootstrap 5 CSS -->
   <?= link_tag(bootstrap_asset('css/bootstrap.min.css')) ?>  
   <!-- Bootstrap Icons -->
